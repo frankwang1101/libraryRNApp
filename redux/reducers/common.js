@@ -10,6 +10,12 @@ const user = (state ={ history: [], memos: [] } , action) => {
             }
         }
         case 'ADDHISTORY':{
+            if(!state){
+                state = {
+                    history: [],
+                    memos: []
+                }
+            }
             let newHis = state.history.slice()
             let idx = newHis.indexOf(action.query)
             if(~idx){
@@ -21,9 +27,6 @@ const user = (state ={ history: [], memos: [] } , action) => {
                 ...state,
                 history: newHis
             }
-        }
-        case 'GETMEMOS':{
-            return state.memos
         }
         case 'SETMEMOS':{
             return {

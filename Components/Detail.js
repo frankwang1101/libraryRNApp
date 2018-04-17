@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, WebView, Dimensions, Button, TouchableOpacity } from 'react-native'
 import styles from '../themes/Style'
+import Constant from '../util/Constant'
 
 var {
     height: deviceHeight,
@@ -36,7 +37,7 @@ export default class Detail extends React.Component {
                 <View style={styles.headerBar}><TouchableOpacity><Text title="back" style={styles.headerBtn} onPress={this.back}>返回</Text></TouchableOpacity></View>
                 <WebView
                     scalesPageToFit={true}
-                    source={{ uri: `http://opac.hilib.com/opac/book/${this.state.bookId}`, method: 'GET' }}
+                    source={{ uri: `${Constant.BOOKPREFIX}/${this.state.bookId}`, method: 'GET' }}
                     style={{ width: deviceWidth, height: deviceHeight }}
                 />
             </View>

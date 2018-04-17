@@ -3,6 +3,7 @@ import ListItem_ from './ListItem'
 import { Text, TextInput, Button, View, FlatList, Dimensions } from 'react-native'
 import { SearchBar, Header, Divider, List, ListItem, Card } from 'react-native-elements'
 import styles from '../themes/Style'
+import Constant from '../util/Constant'
 
 export default class Result extends React.Component {
     constructor(props) {
@@ -21,15 +22,15 @@ export default class Result extends React.Component {
         this.detail = this.detail.bind(this)
         this._renderItem = this._renderItem.bind(this)
     }
-    componentDidMount() {
+    componentDidUpdate() {
         let text = this.props.navigation.getParam('query', '')
-        if(text){
-            this.setState({ text, refreshing: true }, this.search)
+        if(text && this.state.text !== text){
+            this.setState({ text, refreshing: true }, _ => this.search(true))
         }
     }
     search(refresh) {
         this.setState({ refreshing: true})
-        fetch(`http://192.168.2.102:3000/search?name=${this.state.text}&page=${this.state.page}&size=${this.state.size}`).then(res => res.json()).then(res => {
+        fetch(`${Constant.LIBPATH}/search?name=${this.state.text}&page=${this.state.page}&size=${this.state.size}`).then(res => res.json()).then(res => {
             this.setState({
                 list: (refresh?[]:this.state.list).concat(res || []),
                 prop: res.length,
@@ -104,7 +105,7 @@ export default class Result extends React.Component {
                     <FlatList
                         data={this.state.list}
                         renderItem={this._renderItem}
-                        keyExtractor={(item, i) => 'result' + (item.isbn || i)}
+                        keyExtractor={(item, i) => 'result' + (item.isbn || i) + i}
                         refreshing={this.state.refreshing}
                         onRefresh={this._refresh}
                         onEndReached={this._endReach}

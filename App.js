@@ -28,8 +28,9 @@ const tabConfig = {
     style: {
       backgroundColor: 'white',
     },
-    hideIndex: [4]
+    // hideIndex: [4]
   },
+  hiddenTabs: ['Detail']
 }
 
 class Ic extends React.Component {

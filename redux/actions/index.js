@@ -18,12 +18,6 @@ export const addHistory = query => {
     }
 }
 
-export const getMemoList = _ => {
-    return {
-        type: 'GETMEMOS'
-    }
-}
-
 export const setMemoList = memos => {
     return {
         type: 'SETMEMOS',

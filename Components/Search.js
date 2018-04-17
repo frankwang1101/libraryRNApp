@@ -19,8 +19,8 @@ class Search extends React.Component {
         this.search = this.search.bind(this)
     }
     search(text) {
-        let query = this.state.text || text
-        if(this.text){
+        let query = typeof text === 'string' ? text : this.state.text
+        if(query && query !== this.state.text){
             this.setState({
                 text
             })

@@ -3,7 +3,7 @@ import ListItem_ from './ListItem'
 import { Text, TextInput, View, FlatList, Dimensions, DatePickerAndroid, TimePickerAndroid, ScrollView } from 'react-native'
 import { SearchBar, Header, Divider, List, ListItem, Card, Icon, Overlay, Input, Button } from 'react-native-elements'
 import { connect } from 'react-redux'
-import { setMemoList, getMemoList } from '../redux/actions/index'
+import { setMemoList } from '../redux/actions/index'
 import styles from '../themes/Style'
 import MemoItem from './memoItem'
 // import MemoItem from './MemoItem_comp'
@@ -327,7 +327,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     setMemos: _ => dispatch(setMemoList(_)),
-    getMemos: dispatch(getMemoList())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Memo)

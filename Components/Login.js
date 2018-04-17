@@ -4,6 +4,7 @@ import { SearchBar, Header, Divider, List, ListItem, Card, Input, Button } from 
 import styles from '../themes/Style'
 import { connect } from 'react-redux';
 import * as Actions from '../redux/actions/index'
+import Constant from '../util/Constant'
 
 /**
  * 登录页
@@ -24,7 +25,7 @@ class Login extends React.Component {
     this.setState({
       loading: true
     })
-    fetch('http://192.168.2.102:3000/login', {
+    fetch(`${Constant.LIBPATH}/login`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
